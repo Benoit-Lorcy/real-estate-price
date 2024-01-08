@@ -25,25 +25,22 @@ Ce projet Python vous permet de créer une API à partir d'un fichier CSV conten
 ## Utilisation
 
 1. Exécutez l'application : `python app.py`
-2. Accédez à l'API via votre navigateur ou un outil de requêtage comme [curl](https://curl.se/) ou [Postman](https://www.postman.com/).
+2. Accédez à l'API via votre navigateur ou un outil de requêtage comme [Postman](https://www.postman.com/).
 
-## Endpoints
+## Endpoint
 
-- **GET /villes** : Affiche toutes les villes disponibles.
-- **GET /ville/quartiers** : Affiche tous les quartiers d'une ville spécifique. Utilisez `/ville/quartiers?nom_ville=NOM_DE_LA_VILLE`.
-- **GET /ville/quartier** : Affiche les prix d'un quartier dans une ville donnée. Utilisez `/ville/quartier?nom_ville=NOM_DE_LA_VILLE&nom_quartier=NOM_DU_QUARTIER`.
+- **GET /villes/name/<nom_ville>/quartiers** : Affiche les quartiers dans une ville donnée.
+- **GET /villes/name/<nom_ville>/quartiers/<nom_quartier>/price** : Affiche les prix d'un quartier spécifique dans une ville donnée.
 
 ## Exemple d'utilisation
 
-- Pour obtenir toutes les villes : `localhost:5000/villes`
-- Pour obtenir tous les quartiers d'une ville : `localhost:5000/ville/quartiers?nom_ville=NOM_DE_LA_VILLE`
-- Pour obtenir les prix d'un quartier d'une ville : `localhost:5000/ville/quartier?nom_ville=NOM_DE_LA_VILLE&nom_quartier=NOM_DU_QUARTIER`
+- Pour obtenir les différents quartiers à Paris : `localhost:5000/villes/name/tokyo/quartiers`
+- Pour obtenir le prix d'un quartier spécifique à Tokyo : `localhost:5000/villes/name/tokyo/quartiers/sud/price`
 
 ## Auteurs
 
-- Benoit Lorcy <votre@email.com>
+- Benoit Lorcy
 - Cyann Piquet
 
 ## Licence
-
-Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
+/
