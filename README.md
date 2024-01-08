@@ -1,5 +1,5 @@
 # real-estate-price
-A simple project in python and htmx
+A simple project in Python and JavaScript
 
 # Nom du Projet
 
@@ -17,10 +17,6 @@ Ce projet Python vous permet de créer une API à partir d'un fichier CSV conten
 
 1. Clonez le dépôt : `git clone  https://github.com/Benoit-Lorcy/real-estate-price`
 2. Installez les dépendances : `pip install Flask==2.0.1`
-
-## Configuration
-
-1. Ajoutez votre fichier CSV de données dans le répertoire du projet.
 
 ## Utilisation
 
