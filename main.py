@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 import csv
 
 app = Flask(__name__)
@@ -15,6 +15,11 @@ with open('prix_immobilier_fictif.csv', newline='', encoding='utf-8') as csvfile
             'Quartier': row['Quartier'],
             'Prix au m²': row['Prix au m²']
         })
+        
+# Oui
+@app.route('/')
+def serve_html():
+    return send_from_directory('static', 'index.html')
 
 # Endpoint to filter cities
 @app.route('/villes/name/<string:filter>')
