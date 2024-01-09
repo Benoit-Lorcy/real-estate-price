@@ -6,30 +6,31 @@
     <title>City and District Info</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="p-6">
-    <div>
-        <input type="text" id="villeInput" placeholder="Enter city name" class="border p-2" />
-        <select id="quartierSelect" class="border p-2 mt-2">
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="text-center">
+        <h1 class="text-3xl font-bold mb-6">City and District Information</h1>
+        <div class="relative inline-block text-left">
+            <input type="text" id="villeInput" placeholder="Enter city name" class="border p-2" />
+            <div id="suggestionsBox" class="border p-2 mt-2 bg-white absolute w-full hidden"></div>
+        </div>
+        <select id="quartierSelect" class="border p-2 mt-4 block mx-auto">
             <option>Select a district</option>
         </select>
-        <button id="showPriceBtn" class="bg-blue-500 text-white p-2 mt-2">Show Price</button>
+        <button id="showPriceBtn" class="bg-blue-500 text-white p-2 mt-4">Show Price</button>
+        <div id="priceDisplay" class="mt-4"></div>
     </div>
-    <div id="priceDisplay" class="mt-4"></div>
 
     <script src="script.js"></script>
 </body>
 <script>
     const villeInput = document.getElementById('villeInput');
-    const suggestionsBox = document.createElement('div');
+    const suggestionsBox = document.getElementById('suggestionsBox');
     const quartierSelect = document.getElementById('quartierSelect');
     const showPriceBtn = document.getElementById('showPriceBtn');
     const priceDisplay = document.getElementById('priceDisplay');
 
-    suggestionsBox.classList.add('border', 'p-2', 'mt-2', 'bg-white', 'absolute', 'w-full');
-    villeInput.parentNode.insertBefore(suggestionsBox, villeInput.nextSibling);
-
     function populateQuartiers(cityName) {
-        fetch(`/villes/name/${cityName}/quartiers`)
+        fetch(`/api/quartiers/villes/${cityName}`)
             .then(response => response.json())
             .then(data => {
                 quartierSelect.innerHTML = data.map(quartier => `<option>${quartier}</option>`).join('');
@@ -39,17 +40,19 @@
     villeInput.addEventListener('input', function() {
         if (!villeInput.value) {
             suggestionsBox.innerHTML = '';
+            suggestionsBox.classList.add('hidden');
             return;
         }
 
-        fetch(`/villes/name/${villeInput.value}`)
+        fetch(`/api/villes/${villeInput.value}`)
             .then(response => response.json())
             .then(data => {
                 suggestionsBox.innerHTML = data.map(city => `<div class="suggestion-item cursor-pointer p-2 hover:bg-gray-200">${city}</div>`).join('');
+                suggestionsBox.classList.remove('hidden');
                 document.querySelectorAll('.suggestion-item').forEach(item => {
                     item.addEventListener('click', function() {
                         villeInput.value = this.textContent;
-                        suggestionsBox.innerHTML = '';
+                        suggestionsBox.classList.add('hidden');
                         populateQuartiers(this.textContent);
                     });
                 });
@@ -59,7 +62,7 @@
     showPriceBtn.addEventListener('click', function() {
         const selectedQuartier = quartierSelect.value;
         if (selectedQuartier) {
-            fetch(`/villes/name/${villeInput.value}/quartiers/${selectedQuartier}/price`)
+            fetch(`/api/prices/villes/${villeInput.value}/quartiers/${selectedQuartier}`)
                 .then(response => response.json())
                 .then(price => {
                     priceDisplay.textContent = `Price: ${price}`;
@@ -69,7 +72,7 @@
 
     document.addEventListener('click', function(event) {
         if (event.target !== villeInput) {
-            suggestionsBox.innerHTML = '';
+            suggestionsBox.classList.add('hidden');
         }
     });
 </script>
