@@ -1,9 +1,6 @@
 # real-estate-price
+
 A simple project in Python and JavaScript
-
-# Nom du Projet
-
-Projet API de Prix Immobilier
 
 ## Description
 
@@ -21,6 +18,7 @@ Le projet respecte la méthode REST en utilisant les différentes méthodes HTTP
 2. Installez les dépendances : `pip install Flask==2.0.1`
 
 ## Importation des données
+
 Pour importer les données à partir d'un fichier CSV dans la base de données, exécutez le script `import_data.py` fourni dans le projet.
 
 ## Utilisation
