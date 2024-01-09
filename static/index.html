@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City and District Info</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="static/script.js" defer type="module"></script>
 </head>
 <body class="bg-gray-100 h-screen flex items-center justify-center">
     <div class="text-center">
@@ -18,62 +19,9 @@
         </select>
         <button id="showPriceBtn" class="bg-blue-500 text-white p-2 mt-4">Show Price</button>
         <div id="priceDisplay" class="mt-4"></div>
-    </div>
-
-    <script src="script.js"></script>
+    </div>    
 </body>
 <script>
-    const villeInput = document.getElementById('villeInput');
-    const suggestionsBox = document.getElementById('suggestionsBox');
-    const quartierSelect = document.getElementById('quartierSelect');
-    const showPriceBtn = document.getElementById('showPriceBtn');
-    const priceDisplay = document.getElementById('priceDisplay');
 
-    function populateQuartiers(cityName) {
-        fetch(`/api/quartiers/villes/${cityName}`)
-            .then(response => response.json())
-            .then(data => {
-                quartierSelect.innerHTML = data.map(quartier => `<option>${quartier}</option>`).join('');
-            });
-    }
-
-    villeInput.addEventListener('input', function() {
-        if (!villeInput.value) {
-            suggestionsBox.innerHTML = '';
-            suggestionsBox.classList.add('hidden');
-            return;
-        }
-
-        fetch(`/api/villes/${villeInput.value}`)
-            .then(response => response.json())
-            .then(data => {
-                suggestionsBox.innerHTML = data.map(city => `<div class="suggestion-item cursor-pointer p-2 hover:bg-gray-200">${city}</div>`).join('');
-                suggestionsBox.classList.remove('hidden');
-                document.querySelectorAll('.suggestion-item').forEach(item => {
-                    item.addEventListener('click', function() {
-                        villeInput.value = this.textContent;
-                        suggestionsBox.classList.add('hidden');
-                        populateQuartiers(this.textContent);
-                    });
-                });
-            });
-    });
-
-    showPriceBtn.addEventListener('click', function() {
-        const selectedQuartier = quartierSelect.value;
-        if (selectedQuartier) {
-            fetch(`/api/prices/villes/${villeInput.value}/quartiers/${selectedQuartier}`)
-                .then(response => response.json())
-                .then(price => {
-                    priceDisplay.textContent = `Price: ${price}`;
-                });
-        }
-    });
-
-    document.addEventListener('click', function(event) {
-        if (event.target !== villeInput) {
-            suggestionsBox.classList.add('hidden');
-        }
-    });
 </script>
 </html>

@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 import sqlite3
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['JWT_SECRET_KEY'] = 'your_secret_key' 
 jwt = JWTManager(app)
@@ -12,6 +14,9 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+@app.route('/')
+def serve_html():
+    return send_from_directory('static', 'index.html')
 
 @app.route('/api/v1/token', methods=['POST'])
 def create_token():
@@ -41,7 +46,7 @@ def get_villes(ville_filter):
     return jsonify([ville['Ville'] for ville in villes])
 
 
-@app.route('/api/v1/quartiers/<string:ville>', methods=['GET'])
+@app.route('/api/v1/quartiers/villes/<string:ville>', methods=['GET'])
 @jwt_required()
 def get_quartiers(ville):
     conn = get_db_connection()
