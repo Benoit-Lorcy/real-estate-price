@@ -50,9 +50,13 @@ Vous pouvez maintenant tester l'application !
 
 ## Utilisation
 
-Accédez à l'interface utilisateur en ouvrant un navigateur web et en visitant l'URL : http://localhost:5000.
+Dans le dépôt Git, vous trouverez des captures d'écran de l'interface utilisateur pour vous aider à naviguer. Voici un exemple d'utilisation :
 
-Utilisez l'interface pour tester les différents endpoints de l'API.
+1. Accédez à l'interface utilisateur en ouvrant un navigateur web et en visitant l'URL : `http://localhost:5000`.
+
+2. Utilisez l'interface pour tester les différents endpoints de l'API. Par exemple, pour rechercher une ville commençant par la lettre "m", vous obtiendrez des résultats pour des villes telles que Madrid et Moscou. Sélectionnez la ville Moscou, puis choisissez dans la liste des quartiers le quartier "Sud". Enfin, cliquez sur 'Show Price' pour obtenir le prix correspondant.
+
+N'hésitez pas à consulter les captures d'écran pour une expérience utilisateur plus fluide !ur tester les différents endpoints de l'API.
 
 
 ## Endpoints
