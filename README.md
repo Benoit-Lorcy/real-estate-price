@@ -50,7 +50,7 @@ Vous pouvez maintenant tester l'application !
 
 ## Utilisation
 
-Dans le dépôt Git, vous trouverez des captures d'écran de l'interface utilisateur pour vous aider à naviguer. Voici un exemple d'utilisation :
+Dans le dossier `screenshots`, vous trouverez des captures d'écran de l'interface utilisateur pour vous aider à naviguer. Voici un exemple d'utilisation :
 
 1. Accédez à l'interface utilisateur en ouvrant un navigateur web et en visitant l'URL : `http://localhost:5000`.
 
