@@ -37,7 +37,7 @@ Now you can try the application !
 
 ## Importation des données
 
-Pour importer les données à partir d'un fichier CSV dans la base de données, exécutez le script `import_data.py` fourni dans le projet.
+Pour importer les données à partir d'un fichier CSV dans la base de données, le script `import_data.py` fourni dans le projet est exécuté.
 
 ## Tests Unitaires
 
