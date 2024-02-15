@@ -58,28 +58,18 @@ def get_quartiers(ville):
     return jsonify([quartier['Quartier'] for quartier in quartiers])
 
 
-@app.route('/api/v1/prices/ville/<string:ville>/quartier/<string:quartier>', methods=['GET', 'PUT'])
+@app.route('/api/v1/prices/ville/<string:ville>/quartier/<string:quartier>', methods=['GET'])
 @jwt_required()
 def prices_ville_quartier(ville, quartier):
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    if request.method == 'GET':
-        cursor.execute('SELECT Prix_au_m2 FROM real_estate WHERE Ville = ? AND Quartier = ?', (ville, quartier))
-        price = cursor.fetchone()
-        conn.close()
-        if price:
-            return jsonify(price['Prix_au_m2'])
-        else:
-            return {'message': 'No data found'}, 404
-
-    elif request.method == 'PUT':
-        update_data = request.json
-        cursor.execute('UPDATE real_estate SET Prix_au_m2 = ? WHERE Ville = ? AND Quartier = ?', 
-                       (update_data['Prix_au_m2'], ville, quartier))
-        conn.commit()
-        conn.close()
-        return {'message': 'Price updated'}
+    cursor.execute('SELECT Prix_au_m2 FROM real_estate WHERE Ville = ? AND Quartier = ?', (ville, quartier))
+    price = cursor.fetchone()
+    conn.close()
+    if price:
+        return jsonify(price['Prix_au_m2'])
+    else:
+        return {'message': 'No data found'}, 404
 
 if __name__ == '__main__':
     app.run(debug=True)

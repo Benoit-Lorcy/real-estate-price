@@ -1,52 +1,51 @@
 # real-estate-price
 
-A simple project in Python and JavaScript
+Un project simple en python, sqlite, html et javascript pour afficher le prix moyen par ville et par quartier
 
 ## Description
 
-Ce projet Python implémente une API REST respectant les principes CRUD (Create, Read, Update, Delete). L'objectif est de créer une API à partir d'un fichier CSV contenant des données sur les villes, les quartiers et les prix immobiliers associés. L'API offre trois endpoints principaux :
+Ce project implémente :
 
-1. `/api/v1/villes` : Affiche toutes les villes.
-2. `/api/v1/quartiers/villes/<nom_ville>` : Affiche tous les quartiers d'une ville spécifique.
-3. `/api/v1/price/quartiers/<nom_quartier>/villes/<nom_ville>` : Affiche le prix spécifique à un quartier d'une ville donnée.
-
-Le projet respecte la méthode REST en utilisant les différentes méthodes HTTP (GET dans ce cas) pour effectuer des opérations sur les ressources. De plus, il suit les principes CRUD en permettant la récupération (Read) des données.
+- Une api rest
+- Une base sqlite
+- Un moyen d'authentification par clé
+- Un front pour tester l'api
+- Des tests
 
 ## Installation
 
-1. Clonez le dépôt : `git clone  https://github.com/Benoit-Lorcy/real-estate-price`
-2. Installez les dépendances : `pip install Flask==2.0.1` `pip install flask_jwt_extended` `pip install flask_cors`
+Requirements : il faut avoir python d'installé
+
+```bash
+git clone https://github.com/Benoit-Lorcy/real-estate-price
+cd real-estate-price
+python -m venv venv
+./venv/Scripts/Activate.ps1
+pip install -r requirements.txt
+python main.py
+```
+
+Now you can try the application !
+
+## Endpoints
+
+`GET /` : Returns index.html (the front end) \
+`POST /api/v1/token` : Needs an username and a password in json, returns access_token \
+`GET /api/v1/villes/<string:ville_filter>` : retoune la liste de ville possible à partir du début du nom d'une ville\
+`GET /api/v1/quartiers/villes/<string:ville>` : retourne la list de quartiers d'une ville\
+`GET /api/v1/prices/ville/<string:ville>/quartier/ <string:quartier>` : retourne le prix donné une ville et un quartier
 
 ## Importation des données
 
 Pour importer les données à partir d'un fichier CSV dans la base de données, exécutez le script `import_data.py` fourni dans le projet.
 
-## Utilisation
-
-1. Exécutez l'application : `python main.py`
-2. Accédez à l'API via votre navigateur via `localhost:5000` ou un outil de requêtage comme [Postman](https://www.postman.com/).
-
 ## Tests Unitaires
-Le projet est accompagné de tests unitaires réalisés avec le framework Pytest. 
+
+Le projet est accompagné de tests unitaires réalisés avec le framework Pytest.
 Pour exécuter les tests, utilisez la commande suivante :
 `pytest test_real_estate.py`
-
-## Endpoint
-
-- **GET /api/v1/villes** : Affiche la ville donnée.
-- **GET /api/v1/quartiers/<nom_ville>** : Affiche les quartiers dans une ville donnée.
-- **GET /api/v1/prices/ville/<nom_ville>/quartier/<nom_quartier>** : Affiche les prix d'un quartier spécifique dans une ville donnée.
-
-## Exemple d'utilisation
-
-- Pour obtenir les différents villes commençant par la lettre "M" : `localhost:5000/villes/m`
-- Pour obtenir les différents quartiers à Paris : `localhost:5000/quartiers/villes/paris`
-- Pour obtenir le prix du quartier Sud à Tokyo : `localhost:5000/price/quartiers/sud/villes/tokyo`
 
 ## Auteurs
 
 - Benoit Lorcy
 - Cyann Piquet
-
-## Licence
-/
