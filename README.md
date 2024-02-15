@@ -2,6 +2,7 @@
 
 Un projet simple en Python, SQLite, HTML et JavaScript pour afficher le prix moyen de l'immobilier par ville et par quartier.
 
+
 ## Description
 
 Ce project implémente :
@@ -11,6 +12,7 @@ Ce project implémente :
 - Un moyen d'authentification par clé
 - Une interface utilisateur pour tester l'API
 - Des tests unitaires
+
 
 ## Installation
 
@@ -45,11 +47,13 @@ python main.py
 
 Vous pouvez maintenant tester l'application !
 
+
 ## Utilisation
 
 Accédez à l'interface utilisateur en ouvrant un navigateur web et en visitant l'URL : http://localhost:5000.
 
 Utilisez l'interface pour tester les différents endpoints de l'API.
+
 
 ## Endpoints
 
@@ -59,16 +63,18 @@ Utilisez l'interface pour tester les différents endpoints de l'API.
 `GET /api/v1/quartiers/villes/<string:ville>` : Retourne la liste des quartiers d'une ville donnée.\
 `GET /api/v1/prices/ville/<string:ville>/quartier/ <string:quartier>` : Retourne le prix moyen d'une ville et d'un quartier donnés.
 
+
 ## Importation des données
 
 Pour importer les données à partir d'un fichier CSV dans la base de données, le script `import_data.py` fourni dans le projet est exécuté.
+
 
 ## Tests Unitaires
 
 Le projet est accompagné de tests unitaires réalisés avec le framework Pytest.
 Pour exécuter les tests unitaires, assurez-vous d'être dans le répertoire `real-estate-price` où se trouve le projet. Ensuite, utilisez la commande suivante :
 ```bash
-`pytest test_real_estate.py`
+pytest test_real_estate.py
 ```
 
 ## Auteurs
